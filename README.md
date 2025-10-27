@@ -105,6 +105,7 @@ cd cbr_airflow
 
 В командной строке запустим сборку и активацию контейнеров
 ```bash
+docker-compose airflow-init
 docker-compose up -d
 ```
 После запуска будет доступен Airflow UI: http://localhost:8080
