@@ -8,12 +8,14 @@ import psycopg2
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.models import Variable
-from airflow.utils.dates import days_ago
+# from airflow.utils.dates import days_ago
+from pendulum import datetime, yesterday
+
 
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': days_ago(1),
+    'start_date': yesterday('UTC'),
     'retries': 2,
     'retry_delay': timedelta(minutes=5),
 }
