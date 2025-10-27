@@ -87,7 +87,7 @@ x-airflow-common:
 
 services:
   postgres:
-    image: postgres:13
+    image: postgres:16
     container_name: postgres
     environment:
       POSTGRES_USER: airflow
@@ -140,8 +140,7 @@ services:
     command: scheduler
     container_name: scheduler
     healthcheck:
-      #test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
-      test: ["CMD", "-c", "airflow jobs check --job-type SchedulerJob --hostname $$(hostname)"]
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -174,7 +173,6 @@ services:
     container_name: celeryworker
     healthcheck:
       # yamllint disable rule:line-length
-      #disable: true
       test:
         - "CMD-SHELL"
         - 'celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}" || celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"'

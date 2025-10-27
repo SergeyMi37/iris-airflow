@@ -9,8 +9,8 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.models import Variable
 # from airflow.utils.dates import days_ago
-from pendulum import datetime, yesterday
-
+from pendulum import yesterday
+from datetime import timedelta, datetime
 
 default_args = {
     'owner': 'airflow',
