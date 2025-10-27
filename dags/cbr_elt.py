@@ -276,7 +276,8 @@ dag_currency = DAG(
     'cbr_currency_rates',
     default_args=default_args,
     description='Получение курсов валют от ЦБ РФ',
-    schedule_interval='0 11 * * *',  # Ежедневно в 11:00 UTC
+    schedule='0 11 * * *',  # Ежедневно в 11:00 UTC
+    tags=['ЦБР', 'rates', 'daily'],
     catchup=False,
 )
 
@@ -291,7 +292,8 @@ dag_banks = DAG(
     'cbr_bank_data',
     default_args=default_args,
     description='Получение данных банков от ЦБ РФ',
-    schedule_interval='30 11 * * *',  # Ежедневно в 11:30 UTC
+    schedule='30 11 * * *',  # Ежедневно в 11:30 UTC
+    tags=['ЦБР', 'banks', 'daily'],
     catchup=False,
 )
 
